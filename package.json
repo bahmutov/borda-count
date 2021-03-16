@@ -1,0 +1,29 @@
+{
+  "name": "borda-count",
+  "version": "1.0.0",
+  "description": "Counting ranked votes using the Borda tournament method",
+  "main": "src",
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/borda-count.git"
+  },
+  "keywords": [
+    "borda",
+    "voting"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/borda-count/issues"
+  },
+  "homepage": "https://github.com/bahmutov/borda-count#readme",
+  "devDependencies": {
+    "prettier": "2.2.1"
+  }
+}
