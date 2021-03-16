@@ -1,17 +1,18 @@
 {
   "name": "borda-count",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Counting ranked votes using the Borda tournament method",
   "main": "src",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "semantic-release": "semantic-release"
   },
   "files": [
     "src"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bahmutov/borda-count.git"
+    "url": "https://github.com/bahmutov/borda-count.git"
   },
   "keywords": [
     "borda",
@@ -26,7 +27,8 @@
   "devDependencies": {
     "chai": "4.3.4",
     "mocha": "8.3.2",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "semantic-release": "^17.4.2"
   },
   "dependencies": {
     "csv-load-sync": "2.3.0",
