@@ -5,7 +5,7 @@ const { countVotes, countVotesInCsv } = require('..')
 
 describe('count votes', () => {
   it('finds the winner', () => {
-    const csvFilename = path.join(__dirname, 'votes.csv')
+    const csvFilename = path.join(__dirname, 'test.csv')
     const counted = countVotes(
       csvFilename,
       [

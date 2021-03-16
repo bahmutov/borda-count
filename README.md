@@ -1,2 +1,29 @@
 # borda-count
 > Counting ranked votes using the [Borda tournament method](https://en.wikipedia.org/wiki/Borda_count)
+
+## Install
+
+```
+npm i borda-count
+## or using Yarn
+yarn add borda-count
+```
+
+## Use
+
+Count votes in the given "votes.csv"
+
+```
+crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures,email
+2,5,1,3,4,b
+3,5,4,2,1,t
+1,3,2,"","",n
+2,3,5,1,4,h
+5,4,1,2,3,f
+```
+
+```
+npx borda votes.csv "crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures"
+## or using Yarn
+yarn borda votes.csv "crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures"
+```
