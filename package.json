@@ -4,7 +4,7 @@
   "description": "Counting ranked votes using the Borda tournament method",
   "main": "src",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha test"
   },
   "files": [
     "src"
@@ -24,6 +24,12 @@
   },
   "homepage": "https://github.com/bahmutov/borda-count#readme",
   "devDependencies": {
+    "chai": "4.3.4",
+    "mocha": "8.3.2",
     "prettier": "2.2.1"
+  },
+  "dependencies": {
+    "csv-load-sync": "2.3.0",
+    "lodash": "4.17.21"
   }
 }
