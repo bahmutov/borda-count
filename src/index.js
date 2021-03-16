@@ -1,4 +1,4 @@
-const { load, parseCSV } = require('csv-load-sync')
+const { parseCSV } = require('csv-load-sync')
 const { toPairs, sortBy, reverse, isNaN } = require('lodash')
 const fs = require('fs')
 

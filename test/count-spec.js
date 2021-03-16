@@ -46,4 +46,26 @@ describe('count votes', () => {
       ['connect-to-db', 0],
     ])
   })
+
+  it('can have ties', () => {
+    const csv = `
+      crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures
+      2,5,1,3,4
+      3,5,4,2,1
+    `
+    const counted = countVotesInCsv(csv, [
+      'crawl-links',
+      'npm-alias',
+      'cy-log-tips',
+      'connect-to-db',
+      'doom-fixtures',
+    ])
+    expect(counted).to.deep.equal([
+      ['doom-fixtures', 5],
+      ['connect-to-db', 5],
+      ['cy-log-tips', 5],
+      ['crawl-links', 5],
+      ['npm-alias', 0],
+    ])
+  })
 })
