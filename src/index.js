@@ -1,18 +1,37 @@
-const { load } = require('csv-load-sync')
-const { toPairs, sortBy } = require('lodash')
+const { load, parseCSV } = require('csv-load-sync')
+const { toPairs, sortBy, reverse, isNaN } = require('lodash')
+const fs = require('fs')
 
-function countVotes(csvFilename, columns = [], skip = []) {
+function countVotesInCsv(csvText, columns, skip = []) {
+  if (!Array.isArray(columns)) {
+    throw new Error('expected list of columns')
+  }
+  if (!columns.length) {
+    throw new Error('expected a few columns')
+  }
+
+  const N = columns.length
+  // in Borda tournament count, the points for each place are
+  // place 1: N - 1
+  // place 2: N - 2
+  // ...
+  // place N - 1: 1
+  // place N: 0
+  const points = columns.map((_, k) => N - 1 - k)
+  // because the ranks start with 1,
+  // insert a dummy element into the votes list
+  points.unshift(0)
+
   const convert = {}
   columns.forEach((column) => {
     convert[column] = parseInt
   })
-  const csv = load(csvFilename, {
+  const csv = parseCSV(csvText, {
     skip,
     convert,
   })
   if (!csv.length) {
-    console.error('There are no records in the file')
-    process.exit(1)
+    throw new Error(`no records found in your CSV text`)
   }
 
   const getStartSums = (csv) => {
@@ -25,24 +44,26 @@ function countVotes(csvFilename, columns = [], skip = []) {
   }
 
   const summed = csv.reduce((sums, s) => {
-    const maxVote = Object.keys(sums).length + 1
     Object.keys(sums).forEach((key) => {
-      if (s[key]) {
-        sums[key] += s[key]
-      } else {
-        // the user has not ranked this option
-        // thus give it max
-        sums[key] += maxVote
+      const vote = s[key]
+      if (isNaN(vote)) {
+        return
       }
+      sums[key] += points[s[key]]
     })
     return sums
   }, getStartSums(csv))
 
-  const sortedByVotes = sortBy(toPairs(summed), 1)
+  const sortedByVotes = reverse(sortBy(toPairs(summed), 1))
+  return sortedByVotes
+}
 
-  console.log(sortedByVotes)
+function countVotes(csvFilename, columns, skip = []) {
+  const csvText = fs.readFileSync(csvFilename, 'utf8')
+  return countVotesInCsv(csvText, columns, skip)
 }
 
 module.exports = {
   countVotes,
+  countVotesInCsv,
 }
