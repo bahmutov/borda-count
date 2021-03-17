@@ -2,6 +2,7 @@
 
 const { countVotes, getHeaders } = require('..')
 const join = require('path').join
+require('console.table')
 
 const help = [
   'USE: npx borda <votes csv filename> "skip column1,skip column2,..."',
@@ -26,4 +27,4 @@ if (process.argv[3]) {
 }
 
 const counted = countVotes(csvFilename, columns, skip)
-console.log(counted)
+console.table(['Choice', 'Votes'], counted)

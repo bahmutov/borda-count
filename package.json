@@ -36,6 +36,7 @@
     "semantic-release": "^17.4.2"
   },
   "dependencies": {
+    "console.table": "0.10.0",
     "csv-load-sync": "2.3.0",
     "lodash": "4.17.21",
     "simple-bin-help": "1.7.1"

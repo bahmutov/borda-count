@@ -31,3 +31,19 @@ You can pass multiple column names to skip
 ```
 npx borda votes.csv email,crawl-links
 ```
+
+## Output
+
+Prints the choices ordered by points assigned to each place
+
+```
+npx borda votes.csv
+
+Choice         Votes
+-------------  -----
+connect-to-db  20
+cy-log-tips    19
+crawl-links    18
+doom-fixtures  17
+npm-alias      13
+```
