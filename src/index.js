@@ -1,6 +1,10 @@
-const { parseCSV } = require('csv-load-sync')
+const { parseCSV, getHeaders } = require('csv-load-sync')
 const { toPairs, sortBy, reverse, isNaN } = require('lodash')
 const fs = require('fs')
+
+if (typeof getHeaders !== 'function') {
+  throw new Error('Expected getHeaders function')
+}
 
 function countVotesInCsv(csvText, columns, skip = []) {
   if (!Array.isArray(columns)) {
@@ -66,4 +70,5 @@ function countVotes(csvFilename, columns, skip = []) {
 module.exports = {
   countVotes,
   countVotesInCsv,
+  getHeaders,
 }

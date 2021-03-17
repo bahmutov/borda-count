@@ -11,7 +11,7 @@ yarn add borda-count
 
 ## Use
 
-Count votes in the given "votes.csv"
+Count votes in the given "votes.csv" and skip any columns
 
 ```
 crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures,email
@@ -23,7 +23,11 @@ crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures,email
 ```
 
 ```
-npx borda votes.csv "crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures"
-## or using Yarn
-yarn borda votes.csv "crawl-links,npm-alias,cy-log-tips,connect-to-db,doom-fixtures"
+npx borda votes.csv email
+```
+
+You can pass multiple column names to skip
+
+```
+npx borda votes.csv email,crawl-links
 ```
